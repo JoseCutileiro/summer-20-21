@@ -9,6 +9,6 @@
 SSB like engine -> 2d 1 vs 1 engine 
                 -> movemment base and all player interations are predicted
                 -> Sprites and animations are more easy to work with
-                -> Multi sprites abstrated :) (super duck exemple) -> 🦆
+                -> Multi sprites abstrated :) (super duck example code) -> 🦆
                 
 more updates yet to come ⏰
