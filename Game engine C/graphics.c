@@ -5,6 +5,8 @@
 
 // DEFINES
 
+#define screenW 205
+#define screenH 47
 
 // Delete keyboard buffer
 char
@@ -38,18 +40,18 @@ void keyboard_check(char *key){
 
 // initialize map
 
-void init_map(char map[205][47]){
+void init_map(char map[screenW][screenH]){
     int i,j;
-    for (i=0;i<47;i++){
-        for (j=0;j<205;j++){
-            if (i==0 || i==46){
+    for (i=0;i<screenH;i++){
+        for (j=0;j<screenW;j++){
+            if (i==0 || i==screenH-1){
                 map[j][i] = '_';
             }
-            if (j==0 || j==204){
+            if (j==0 || j==screenW-1){
                 map[j][i] = '|';
             }
             else{
-                if (i!=0 && i!=46)
+                if (i!=0 && i!=screenH-1)
                     map[j][i] = ' ';
             }
         }
@@ -58,7 +60,7 @@ void init_map(char map[205][47]){
 
 // Square
 
-void square(int x,int y,char map[205][47]){
+void square(int x,int y,char map[screenW][screenH]){
     int i,j;
     for (i=-1;i<=1;i++){
         for(j=-1;j<=1;j++){
@@ -68,15 +70,14 @@ void square(int x,int y,char map[205][47]){
 }
 
 // Map design
-void draw_map(char map[205][47]){
+void draw_map(char map[screenW][screenH]){
     int i,j;
-    for(i=0;i<47;i++){
-        for(j=0;j<205;j++){
+    for(i=0;i<screenH;i++){
+        for(j=0;j<screenW;j++){
             printf("%c",map[j][i]);
         }
         printf("\n");
     }
-    printf("\n");
 }
 
 // Action
@@ -84,9 +85,9 @@ void draw_map(char map[205][47]){
 
 // Main loop
 int main(){
-    int x=100,y=2;
+    int x=100,y=3;
     char key='+';
-    char map[205][47];
+    char map[screenW][screenH];
     srand(time(NULL));
     init_map(map);
     while (key != '-')
@@ -96,7 +97,8 @@ int main(){
         key = buffer_delete();
 
         if (key == 'd'){
-            y+=2;
+            if (y<screenH-3)
+                y+=3;
             square(x,y,map);
         }
     }
